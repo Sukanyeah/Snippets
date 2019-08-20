@@ -1,0 +1,31 @@
+<?php
+
+function run($suk, $n){
+    $suk2 = array();
+    for($i=1;$i<$n;$i++){
+        $suk2[] = $suk[$i];
+    }
+    $suk2[] = $suk[0];
+    return $suk2;
+}
+
+$stdin = fopen("php://stdin", "r");
+fscanf($stdin, "%[^\n]", $nd_temp);
+$nd = explode(' ', $nd_temp);
+$n = intval($nd[0]);
+$d = intval($nd[1]);
+fscanf($stdin, "%[^\n]", $a_temp);
+$a = array_map('intval', preg_split('/ /', $a_temp, -1, PREG_SPLIT_NO_EMPTY));
+fclose($stdin);
+
+for ($i = 0; $i < $n; $i++) {
+    $shifted = ($i + $d) % $n;
+    $op = $a[$shifted];
+    if ($i < $n-1){
+      $op .= ' ';
+    }
+}
+
+echo $op;
+
+?>
